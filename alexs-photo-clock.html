@@ -3,22 +3,21 @@
 
 <html lang="en-US">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scalre=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
 	<title>Photo Control Panel</title>
 	
 	<link rel="stylesheet" type="text/css" href="photo-style.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
 
 $(function() {
-	$("img").click(function() {
-
-		$(this).toggleClass("hover");
-
+	$('div.innerContent').on('click',function() {
+		console.log("clicked");
+		$('div.innerContent').removeClass('clicked');
+		$(this).addClass('clicked');
 	});
-
 });
 
 </script>
@@ -43,72 +42,90 @@ $(function() {
 				This page let's you wirelessly change the photos on your "Shashin" photo display. Choose which image you want your loved one to see at any time and from any place. All you need to do is click on the image you want to select below and the photo display will flip to that image. The black border shows you which image is selected at any given moment.	
 			</p>
 			<!-- 	<img src="http://placekitten.com/100/100" />    -->
-
+			
+	</div>
 	<div class="wrap">
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08762.JPG" />
+				<span></span>
+		
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08771.JPG" />
+				<span></span>			
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08818.JPG" />
+				<span></span>
+
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08831.JPG" />
+				<span></span>
+		
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08919.JPG" />
+				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08940.JPG" />
+				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09042.JPG" />
+				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09062.JPG" />
+				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09095.JPG" />
+				<span></span>
+
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09113.JPG" />
+				<span></span>
+
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09306.JPG" />
+				<span></span>
+				
 			</div>
 		</div>
 
