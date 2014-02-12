@@ -1,8 +1,21 @@
 body {
-	margin: 0;
+	margin: 100px;
 	padding: 0;
 	background: white;
 	font: 14px 'Lucida Sans', sans-serif;
+}
+
+nav{	
+	position: relative;
+	float: right;
+	margin: 0;
+	margin-right: 40px;
+	padding: 0;
+}
+
+.nav {
+	padding: 15px 15px;
+
 }
 
 .wrap {
@@ -14,6 +27,12 @@ body {
 .intro {
 	border: 5px solid #ddd;
 	margin: 20px;
+	padding: 15px;
+}
+
+.intro2 {
+	border: 5px solid #ddd;
+	margin: 15px;
 	padding: 15px;
 }
 
@@ -30,8 +49,9 @@ body {
 .box {
 	float: left;
 	position: relative;
-	width: 20%;
-	padding-bottom: 20%;
+	width: 250px;
+	height: auto;
+	padding-bottom: 33%;
 }
 
 .innerContent {
