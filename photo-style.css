@@ -15,16 +15,12 @@ body {
 	border: 5px solid #ddd;
 	margin: 20px;
 	padding: 15px;
-}
-
-.intro p {
-	margin-right: 110px;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .intro img {
-	float: right; 
-	height: -100px;
+	float: right;
+	margin: 0px 0px 15px 15px;
 }
 
 .box {
@@ -42,27 +38,6 @@ body {
 	bottom: 10px;
 	overflow: hidden;
 }
-
-/*.innerContent:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: rgba(0,0,255,0.5);
-	-moz-transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -ms-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    transition: all .3s linear;
-}
-
-.innerContent:hover:before, .innerContent.clicked{
-	background: none;
-}
-*/
 
 .innerContent img {
 	display: block;
