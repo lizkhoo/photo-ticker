@@ -3,22 +3,21 @@
 
 <html lang="en-US">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scalre=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
 	<title>Alex's Photo Ticker</title>
 	
 	<link rel="stylesheet" type="text/css" href="photo-style.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
 
 $(function() {
-	$("img").click(function() {
-
-		$(this).toggleClass("hover");
-
+	$('div.innerContent').on('click',function() {
+		console.log("clicked");
+		$('div.innerContent').removeClass('clicked');
+		$(this).addClass('clicked');
 	});
-
 });
 
 </script>
@@ -38,24 +37,28 @@ $(function() {
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://www.dwuser.com/education/content/creating-responsive-tiled-layout-with-pure-css/images/demo/12.jpg" />
+				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://www.dwuser.com/education/content/creating-responsive-tiled-layout-with-pure-css/images/demo/12.jpg" />
+				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://www.dwuser.com/education/content/creating-responsive-tiled-layout-with-pure-css/images/demo/3.jpg" />
+				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
 			<div class="innerContent">
 				<img src="http://www.dwuser.com/education/content/creating-responsive-tiled-layout-with-pure-css/images/demo/3.jpg" />
+				<span></span>
 			</div>
 		</div>
 

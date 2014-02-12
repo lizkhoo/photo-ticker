@@ -43,18 +43,45 @@ body {
 	overflow: hidden;
 }
 
+/*.innerContent:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,0,255,0.5);
+	-moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+.innerContent:hover:before, .innerContent.clicked{
+	background: none;
+}
+*/
+
 .innerContent img {
-	width: 90%;
-	border: 5px solid white; 
+	display: block;
+	width: 100%;
 	cursor: pointer;
 }
 
-.innerContent img:hover {
-	border: 5px solid #00CC66; 
+.innerContent span {
+	background: rgba(0,0,255,0.5);
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	top: 0;
 }
 
-.innerContent img.hover {
-	border: 5px solid #00CC66; 
+.innerContent:hover span, .innerContent.clicked span {
+	opacity: 0;
 }
 
 @media only screen and (max-width : 480px) {
