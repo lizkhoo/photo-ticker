@@ -10,15 +10,29 @@
 	
 	<link rel="stylesheet" type="text/css" href="photo-style.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>
+<script type="text/javascript">
 
 $(function() {
 	$('div.innerContent').on('click',function() {
 		console.log("clicked");
 		$('div.innerContent').removeClass('clicked');
 		$(this).addClass('clicked');
+
+		String.prototype.filename = function(extension){
+		    var s = this.replace(/\\/g, '/');
+		    s = s.substring(s.lastIndexOf('/') + 1);
+		    return extension? s.replace(/[?#].+$/, ''): s.split('.')[0];
+		}
+		var photoname = $('img').attr('src').filename();
+		console.log(photoname);
+		
+		var photoid = $(this).attr('id');
+		console.log(photoid);
+		$.get('/selected/'+ photoid);
 	});
 });
+
+
 
 </script>
 
@@ -48,7 +62,7 @@ $(function() {
 	<div class="wrap">
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="1">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08762.JPG" />
 				<span></span>
 		
@@ -56,7 +70,7 @@ $(function() {
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="2">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC00582.JPG" />
 				<span></span>
 		
@@ -64,14 +78,14 @@ $(function() {
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="3">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08940.JPG " />
 				<span></span>			
 			</div>
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="4">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08818.JPG" />
 				<span></span>
 
@@ -79,7 +93,7 @@ $(function() {
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="5">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08831.JPG" />
 				<span></span>
 		
@@ -87,35 +101,35 @@ $(function() {
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="6">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08919.JPG" />
 				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="7">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC08771.JPG" />
 				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="8">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09042.JPG" />
 				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="9">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09062.JPG" />
 				<span></span>
 			</div>
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="10">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09095.JPG" />
 				<span></span>
 
@@ -123,7 +137,7 @@ $(function() {
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="11">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09113.JPG" />
 				<span></span>
 
@@ -131,7 +145,7 @@ $(function() {
 		</div>
 
 		<div class ="box">
-			<div class="innerContent">
+			<div class="innerContent" id="12">
 				<img src="http://166.78.159.225/~arc507/uploads/CDNI-FlipDisplay/DSC09306.JPG" />
 				<span></span>
 
