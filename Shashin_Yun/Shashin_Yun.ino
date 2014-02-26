@@ -24,7 +24,7 @@ void setup() {
   pinMode(redLED, OUTPUT);
   pinMode(holdSwitch, INPUT);
 
-  while (!Serial);
+//  while (!Serial);
 
 }
 
@@ -45,7 +45,7 @@ void loop() {
 void incoming() {
   HttpClient client;
 
-  client.get("http://arduino.julia/selected/");
+  client.get("http://http://166.78.159.225:8080/selected/");
 
   while (client.available()) {
     char inChar = client.read();

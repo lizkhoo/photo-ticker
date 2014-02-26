@@ -52,16 +52,43 @@ console.log("Listening for new clients on port 8080");
 // respond to web GET requests with the index.html page:
 //THIS OPENS THE HOMEPAGE OF YOUR WEBSITE
 app.get('/', function (request, response) {
-  response.sendfile(__dirname + '/index.html');
+  response.sendfile(__dirname + '/alexs-photo-clock.html');
 });
   
 
-var photoID;
+var photoID = 1;
 
 //YOU NEED TO ADD A GET REQUEST IN YOUR CLIENT, SO IT SENDS THE PHOTOID
 app.get('/selected/*', function (request, response) {
-  photoID = request.params[0];  
+
+  var statement = "nothing";
+  console.log("params" + typeof(request.params[0]));
+
+  if (request.params[0] === '') {
+  	  	statement = photoID;
+
+  }  else {
+  	photoID = request.params[0];
+  }
+
   console.log("received "+ photoID);
+
+
+  if (photoID > 10) {
+  	statement = "Whoa, that's a lot";
+  }
+  
+  if (photoID > 5 && photoID < 10) {
+  	statement = "that's some";
+  }
+
+  if (photoID > 0 && photoID < 5) {
+  	statement = "not enough";
+  }
+
+   response.writeHead(200, {'Content-Type': 'text/html'});
+  // send the data and close the connection:
+  response.end(statement + " " + photoID);
 });
 
 
