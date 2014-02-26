@@ -28,14 +28,7 @@ void setup() {
 
 }
 
-// making the HOLD button the gateway to whether stuff things are even sent through
-// (will this "clog" my serial cause numbers are being sent but not going anywhere?)
-
 void loop() {
-  HttpClient client;
-
-  client.get("http://arduino.julia.txt");
-
   int holdState = digitalRead(holdSwitch);
   if (holdState == 1) {
     // do nothing
@@ -43,35 +36,40 @@ void loop() {
   }
   if (holdState == 0) {
     Serial.println("hold is off");
-    //incoming();
+
+    incoming();
 
   }
 }
-/*
-void incoming() {
 
-  while (Serial.available()) {
-    int inChar = (int)Serial.read();
-    //Serial.println(inChar);
-    //Serial.println(curPhoto);
+void incoming() {
+  HttpClient client;
+
+  client.get("http://arduino.julia/selected/");
+
+  while (client.available()) {
+    char inChar = client.read();
+    Serial.print(inChar);
 
     /// initial connection established
-    if (inChar == '111') {
-      digitalWrite(greenLED, HIGH);
-      delay(10000);
-      digitalWrite(greenLED, LOW);
-    }
+    /*  if (inChar == '111') {
+        digitalWrite(greenLED, HIGH);
+        delay(10000);
+        digitalWrite(greenLED, LOW);
+      }
 
-    /// no connection
-    if (inChar == '222') {
-      digitalWrite(redLED, HIGH);
-      delay(10000);
-      digitalWrite(redLED, LOW);
-    }
+      /// no connection
+      if (inChar == '222') {
+        digitalWrite(redLED, HIGH);
+        delay(10000);
+        digitalWrite(redLED, LOW);
+      }
+
+    */
 
     // Tombraider Scene Tree
     if (inChar == '1') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(200);
           break;
@@ -139,7 +137,7 @@ void incoming() {
 
     // Bagan Pool
     if (inChar == '2') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(200);
           break;
@@ -206,7 +204,7 @@ void incoming() {
     }
     // Fireworks
     if (inChar == '3') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(180);
           break;
@@ -274,7 +272,7 @@ void incoming() {
 
     // Sommerpalace JBC
     if (inChar == '4') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(170);
           break;
@@ -342,7 +340,7 @@ void incoming() {
 
     // Bagan Balloon Air
     if (inChar == '5') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(160);
           break;
@@ -403,14 +401,14 @@ void incoming() {
         case '20':
           myStepper.step(150);
           break;
-          default:
+        default:
           break;
       }
     }
 
     // Chinese Art Wall
     if (inChar == '6') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(150);
           break;
@@ -478,7 +476,7 @@ void incoming() {
 
     // Tah Prom Ruins
     if (inChar == '7') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(140);
           break;
@@ -546,7 +544,7 @@ void incoming() {
 
     // Novice Girl
     if (inChar == '8') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(130);
           break;
@@ -614,7 +612,7 @@ void incoming() {
 
     // Family Fun
     if (inChar == '9') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(120);
           break;
@@ -682,7 +680,7 @@ void incoming() {
 
     // Ayuttaya
     if (inChar == '10') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(110);
           break;
@@ -751,7 +749,7 @@ void incoming() {
 
     // Cambodia Guide Walking
     if (inChar == '11') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(100);
           break;
@@ -812,7 +810,7 @@ void incoming() {
         case '20':
           myStepper.step(90);
           break;
- 
+
         default:
           break;
       }
@@ -820,8 +818,8 @@ void incoming() {
 
 
     // Trucks and Balloons
-    if (inChar == '12') 
-      switch (prevChar) {
+    if (inChar == '12') {
+      switch (curPhoto) {
         case '1':
           myStepper.step(90);
           break;
@@ -890,7 +888,7 @@ void incoming() {
 
     // JBC ARC Tah Prom
     if (inChar == '13') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(80);
           break;
@@ -959,7 +957,7 @@ void incoming() {
 
     // Face
     if (inChar == '14') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(70);
           break;
@@ -1026,9 +1024,9 @@ void incoming() {
     }
 
 
-//    Hehe Rowing
+    //    Hehe Rowing
     if (inChar == '15') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(60);
           break;
@@ -1093,11 +1091,11 @@ void incoming() {
           break;
       }
     }
-    
-    
+
+
     //   Swedagon Pagoda
     if (inChar == '16') {
-      switch (prevChar) {
+      switch (curPhoto) {
         case '1':
           myStepper.step(50);
           break;
@@ -1162,290 +1160,293 @@ void incoming() {
           break;
       }
     }
-    
-        //Family with People
-    if (inChar == '17') {
-      switch (prevChar) {
-        case '1':
-          myStepper.step(40);
-          break;
-        case '2':
-          myStepper.step(50);
-          break;
-        case '3':
-          myStepper.step(60);
-          break;
-        case '4':
-          myStepper.step(70);
-          break;
-        case '5':
-          myStepper.step(80);
-          break;
-        case '6':
-          myStepper.step(90);
-          break;
-        case '7':
-          myStepper.step(100);
-          break;
-        case '8':
-          myStepper.step(110);
-          break;
-        case '9':
-          myStepper.step(120);
-          break;
-        case '10':
-          myStepper.step(130);
-          break;
-        case '11':
-          myStepper.step(140);
-          break;
-        case '12':
-          myStepper.step(150);
-          break;
-        case '13':
-          myStepper.step(160);
-          break;
-        case '14':
-          myStepper.step(170);
-          break;
-        case '15':
-          myStepper.step(180);
-          break;
-        case '16':
-          myStepper.step(190);
-          break;
-        case '17':
-          myStepper.step(200);
-          break;
-        case '18':
-          myStepper.step(10);
-          break;
-        case '19':
-          myStepper.step(20);
-          break;
-        case '20':
-          myStepper.step(30);
-          break;
-        default:
-          break;
-      }
-    }
-    
-    //Mouth     
-    if (inChar == '18') {
-      switch (prevChar) {
-        case '1':
-          myStepper.step(30);
-          break;
-        case '2':
-          myStepper.step(40);
-          break;
-        case '3':
-          myStepper.step(50);
-          break;
-        case '4':
-          myStepper.step(60);
-          break;
-        case '5':
-          myStepper.step(70);
-          break;
-        case '6':
-          myStepper.step(80);
-          break;
-        case '7':
-          myStepper.step(90);
-          break;
-        case '8':
-          myStepper.step(100);
-          break;
-        case '9':
-          myStepper.step(110);
-          break;
-        case '10':
-          myStepper.step(120);
-          break;
-        case '11':
-          myStepper.step(130);
-          break;
-        case '12':
-          myStepper.step(140);
-          break;
-        case '13':
-          myStepper.step(150);
-          break;
-        case '14':
-          myStepper.step(160);
-          break;
-        case '15':
-          myStepper.step(170);
-          break;
-        case '16':
-          myStepper.step(180);
-          break;
-        case '17':
-          myStepper.step(190);
-          break;
-        case '18':
-          myStepper.step(200);
-          break;
-        case '19':
-          myStepper.step(10);
-          break;
-        case '20':
-          myStepper.step(20);
-          break;
-        default:
-          break;
-      }
-    }
-    
-    
-     //Peep Hole
-    if (inChar == '19') {
-      switch (prevChar) {
-        case '1':
-          myStepper.step(10);
-          break;
-        case '2':
-          myStepper.step(20);
-          break;
-        case '3':
-          myStepper.step(40);
-          break;
-        case '4':
-          myStepper.step(50);
-          break;
-        case '5':
-          myStepper.step(60);
-          break;
-        case '6':
-          myStepper.step(70);
-          break;
-        case '7':
-          myStepper.step(80);
-          break;
-        case '8':
-          myStepper.step(90);
-          break;
-        case '9':
-          myStepper.step(100);
-          break;
-        case '10':
-          myStepper.step(110);
-          break;
-        case '11':
-          myStepper.step(120);
-          break;
-        case '12':
-          myStepper.step(130);
-          break;
-        case '13':
-          myStepper.step(140);
-          break;
-        case '14':
-          myStepper.step(150);
-          break;
-        case '15':
-          myStepper.step(160);
-          break;
-        case '16':
-          myStepper.step(170);
-          break;
-        case '17':
-          myStepper.step(180);
-          break;
-        case '18':
-          myStepper.step(190);
-          break;
-        case '19':
-          myStepper.step(200);
-          break;
-        case '20':
-          myStepper.step(10);
-          break;
-        default:
-          break;
-      }
-    }
-    
-    //Die fuhrerin
-        if (inChar == '20') {
-      switch (prevChar) {
-        case '1':
-          myStepper.step(10);
-          break;
-        case '2':
-          myStepper.step(20);
-          break;
-        case '3':
-          myStepper.step(30);
-          break;
-        case '4':
-          myStepper.step(40);
-          break;
-        case '5':
-          myStepper.step(50);
-          break;
-        case '6':
-          myStepper.step(60);
-          break;
-        case '7':
-          myStepper.step(70);
-          break;
-        case '8':
-          myStepper.step(80);
-          break;
-        case '9':
-          myStepper.step(90);
-          break;
-        case '10':
-          myStepper.step(100);
-          break;
-        case '11':
-          myStepper.step(110);
-          break;
-        case '12':
-          myStepper.step(120);
-          break;
-        case '13':
-          myStepper.step(130);
-          break;
-        case '14':
-          myStepper.step(140);
-          break;
-        case '15':
-          myStepper.step(150);
-          break;
-        case '16':
-          myStepper.step(160);
-          break;
-        case '17':
-          myStepper.step(170);
-          break;
-        case '18':
-          myStepper.step(180);
-          break;
-        case '19':
-          myStepper.step(190);
-          break;
-        case '20':
-          myStepper.step(200);
-          break;
-        default:
-          break;
-          
-    */
-    /*
 
- 
-    // filtering out
-    if (inChar == 13 || inChar == 10) {
-      Serial.println("HELLO");
-      //      return;
+    //Family with People
+    if (inChar == '17') {
+      switch (curPhoto) {
+        case '1':
+          myStepper.step(40);
+          break;
+        case '2':
+          myStepper.step(50);
+          break;
+        case '3':
+          myStepper.step(60);
+          break;
+        case '4':
+          myStepper.step(70);
+          break;
+        case '5':
+          myStepper.step(80);
+          break;
+        case '6':
+          myStepper.step(90);
+          break;
+        case '7':
+          myStepper.step(100);
+          break;
+        case '8':
+          myStepper.step(110);
+          break;
+        case '9':
+          myStepper.step(120);
+          break;
+        case '10':
+          myStepper.step(130);
+          break;
+        case '11':
+          myStepper.step(140);
+          break;
+        case '12':
+          myStepper.step(150);
+          break;
+        case '13':
+          myStepper.step(160);
+          break;
+        case '14':
+          myStepper.step(170);
+          break;
+        case '15':
+          myStepper.step(180);
+          break;
+        case '16':
+          myStepper.step(190);
+          break;
+        case '17':
+          myStepper.step(200);
+          break;
+        case '18':
+          myStepper.step(10);
+          break;
+        case '19':
+          myStepper.step(20);
+          break;
+        case '20':
+          myStepper.step(30);
+          break;
+        default:
+          break;
+      }
     }
-    else {
-      //
+
+    //Mouth
+    if (inChar == '18') {
+      switch (curPhoto) {
+        case '1':
+          myStepper.step(30);
+          break;
+        case '2':
+          myStepper.step(40);
+          break;
+        case '3':
+          myStepper.step(50);
+          break;
+        case '4':
+          myStepper.step(60);
+          break;
+        case '5':
+          myStepper.step(70);
+          break;
+        case '6':
+          myStepper.step(80);
+          break;
+        case '7':
+          myStepper.step(90);
+          break;
+        case '8':
+          myStepper.step(100);
+          break;
+        case '9':
+          myStepper.step(110);
+          break;
+        case '10':
+          myStepper.step(120);
+          break;
+        case '11':
+          myStepper.step(130);
+          break;
+        case '12':
+          myStepper.step(140);
+          break;
+        case '13':
+          myStepper.step(150);
+          break;
+        case '14':
+          myStepper.step(160);
+          break;
+        case '15':
+          myStepper.step(170);
+          break;
+        case '16':
+          myStepper.step(180);
+          break;
+        case '17':
+          myStepper.step(190);
+          break;
+        case '18':
+          myStepper.step(200);
+          break;
+        case '19':
+          myStepper.step(10);
+          break;
+        case '20':
+          myStepper.step(20);
+          break;
+        default:
+          break;
+      }
     }
+
+
+    //Peep Hole
+    if (inChar == '19') {
+      switch (curPhoto) {
+        case '1':
+          myStepper.step(10);
+          break;
+        case '2':
+          myStepper.step(20);
+          break;
+        case '3':
+          myStepper.step(40);
+          break;
+        case '4':
+          myStepper.step(50);
+          break;
+        case '5':
+          myStepper.step(60);
+          break;
+        case '6':
+          myStepper.step(70);
+          break;
+        case '7':
+          myStepper.step(80);
+          break;
+        case '8':
+          myStepper.step(90);
+          break;
+        case '9':
+          myStepper.step(100);
+          break;
+        case '10':
+          myStepper.step(110);
+          break;
+        case '11':
+          myStepper.step(120);
+          break;
+        case '12':
+          myStepper.step(130);
+          break;
+        case '13':
+          myStepper.step(140);
+          break;
+        case '14':
+          myStepper.step(150);
+          break;
+        case '15':
+          myStepper.step(160);
+          break;
+        case '16':
+          myStepper.step(170);
+          break;
+        case '17':
+          myStepper.step(180);
+          break;
+        case '18':
+          myStepper.step(190);
+          break;
+        case '19':
+          myStepper.step(200);
+          break;
+        case '20':
+          myStepper.step(10);
+          break;
+        default:
+          break;
+      }
+    }
+
+    //Die fuhrerin
+    if (inChar == '20') {
+      switch (curPhoto) {
+        case '1':
+          myStepper.step(10);
+          break;
+        case '2':
+          myStepper.step(20);
+          break;
+        case '3':
+          myStepper.step(30);
+          break;
+        case '4':
+          myStepper.step(40);
+          break;
+        case '5':
+          myStepper.step(50);
+          break;
+        case '6':
+          myStepper.step(60);
+          break;
+        case '7':
+          myStepper.step(70);
+          break;
+        case '8':
+          myStepper.step(80);
+          break;
+        case '9':
+          myStepper.step(90);
+          break;
+        case '10':
+          myStepper.step(100);
+          break;
+        case '11':
+          myStepper.step(110);
+          break;
+        case '12':
+          myStepper.step(120);
+          break;
+        case '13':
+          myStepper.step(130);
+          break;
+        case '14':
+          myStepper.step(140);
+          break;
+        case '15':
+          myStepper.step(150);
+          break;
+        case '16':
+          myStepper.step(160);
+          break;
+        case '17':
+          myStepper.step(170);
+          break;
+        case '18':
+          myStepper.step(180);
+          break;
+        case '19':
+          myStepper.step(190);
+          break;
+        case '20':
+          myStepper.step(200);
+          break;
+        default:
+          break;
+
+      }
+      Serial.flush();
+    }
+  }
+}
+/*
+
+// filtering out
+if (inChar == 13 || inChar == 10) {
+  Serial.println("HELLO");
+  //      return;
+}
+else {
+  //
+}
 
 
 }

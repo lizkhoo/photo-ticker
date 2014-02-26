@@ -9,31 +9,24 @@
 	<title>Flipping Shashin</title>
 	
 	<link rel="stylesheet" type="text/css" href="photo-style.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript">
 
-$(function() {
-	$('div.innerContent').on('click',function() {
-		console.log("clicked");
-		$('div.innerContent').removeClass('clicked');
-		$(this).addClass('clicked');
+	<script src="/~arc507/CDNI/CDNI-FlipDisplay/js/zepto.min.js"></script>
 
-		String.prototype.filename = function(extension){
-		    var s = this.replace(/\\/g, '/');
-		    s = s.substring(s.lastIndexOf('/') + 1);
-		    return extension? s.replace(/[?#].+$/, ''): s.split('.')[0];
-		}
-		var photoname = $('img').attr('src').filename();
-		console.log(photoname);
-		
-		var photoid = $(this).attr('id');
-		console.log(photoid);
-		$.get('/selected/'+ photoid);
-	});
-});
+	<script type="text/javascript">
 
+		$(function() {
+			$('div.innerContent').on('click',function() {
+				console.log("clicked");
+				$('div.innerContent').removeClass('clicked');
+				$(this).addClass('clicked');
 
+				var photoid = $(this).attr('id');
+				console.log(photoid);
 
+				$.get('/selected/'+ photoid);
+			});
+		}); 	
+	
 </script>
 
 </head>
