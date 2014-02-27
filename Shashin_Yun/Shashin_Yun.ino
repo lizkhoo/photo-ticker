@@ -3,7 +3,7 @@
 #include <Bridge.h>
 #include <HttpClient.h>
 
-const int stepsPerRev = 210;
+const int stepsPerRev = 200;
 Stepper myStepper(stepsPerRev, 8, 9, 10, 11);
 
 int value = 0;
@@ -11,7 +11,9 @@ int inByte = 0;
 int curPhoto = '1'; // which photo is currently on display?
 
 // Hold switch and lights to signal state of Yun
-int holdSwitch = 2;
+const int holdSwitch = 7;
+int holdSwitchState = 0;
+
 int greenLED = 3;
 int redLED = 4;
 
@@ -25,19 +27,19 @@ void setup() {
   pinMode(holdSwitch, INPUT);
 
 //  while (!Serial);
-
 }
 
 void loop() {
-  int holdState = digitalRead(holdSwitch);
-  if (holdState == 1) {
+  int holdSwitchState = digitalRead(holdSwitch);
+  Serial.println(holdSwitch);
+  if (holdSwitchState == HIGH) {
     // do nothing
-    Serial.println("HELLO");
+    //Serial.println("hold is on");
   }
-  if (holdState == 0) {
-    Serial.println("hold is off");
+  if (holdSwitchState == LOW) {
+    //Serial.println("hold is off");
 
-    incoming();
+   incoming();
 
   }
 }
@@ -45,7 +47,7 @@ void loop() {
 void incoming() {
   HttpClient client;
 
-  client.get("http://http://166.78.159.225:8080/selected/");
+  client.get("http://166.78.159.225:8080/selected/");
 
   while (client.available()) {
     char inChar = client.read();
